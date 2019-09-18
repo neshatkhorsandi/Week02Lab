@@ -23,8 +23,9 @@ public class ArithmeticCalculatorServlet extends HttpServlet
     {
         String first = request.getParameter("firstField");
         String second = request.getParameter("secondField");
-        String invalid = "Result: Invalid";
-        
+        String invalid = "Invalid";
+        String word = "Result: ";
+        request.setAttribute("finalResult",word);       
         
         if(!first.matches("\\d\\d") && !second.matches("\\d\\d"))
         {
@@ -38,7 +39,6 @@ public class ArithmeticCalculatorServlet extends HttpServlet
         {
             int firstNumb = Integer.parseInt(first);
             int secondNumb= Integer.parseInt(second);
-            
             int result = firstNumb + secondNumb;
             
             request.setAttribute("display", result);
@@ -66,7 +66,6 @@ public class ArithmeticCalculatorServlet extends HttpServlet
             int secondNumb= Integer.parseInt(second);
             
             int result = firstNumb * secondNumb;
-            
             request.setAttribute("display", result);
             getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp")
                 .forward(request, response);
